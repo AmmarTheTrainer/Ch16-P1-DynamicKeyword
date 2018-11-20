@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,6 +40,41 @@ namespace Ch16_P1_DynamicKeyword
             #endregion
 
             Console.ReadLine();
+        }
+
+        static void CreateUsingLateBinding(Assembly asm)
+        {
+            try
+            {
+                // Get metadata for the Minivan type.
+                Type miniVan = asm.GetType("CarLibrary.MiniVan");
+                // Create the Minivan on the fly.
+                object obj = Activator.CreateInstance(miniVan);
+                // Get info for TurboBoost.
+                MethodInfo mi = miniVan.GetMethod("TurboBoost");
+                // Invoke method ("null" for no parameters).
+                mi.Invoke(obj, null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        static void InvokeMethodWithDynamicKeyword(Assembly asm)
+        {
+            try
+            {
+                // Get metadata for the Minivan type.
+                Type miniVan = asm.GetType("CarLibrary.MiniVan");
+                // Create the Minivan on the fly and call method!
+                dynamic obj = Activator.CreateInstance(miniVan);
+                obj.TurboBoost();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private static dynamic GetDynamicObject()
