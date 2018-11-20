@@ -23,6 +23,7 @@ namespace Ch16_P1_DynamicKeyword
             //ChangeDynamicDataType();
             InvokeMembersOnDynamicData();
 
+
             Console.ReadLine();
         }
 
@@ -34,6 +35,18 @@ namespace Ch16_P1_DynamicKeyword
             // But they compile just fine.
             Console.WriteLine(textData1.toupper());
             Console.WriteLine(textData1.Foo(10, "ee", DateTime.Now));
+
+            dynamic textData1 = "Hello";
+            try
+            {
+                Console.WriteLine(textData1.ToUpper());
+                Console.WriteLine(textData1.toupper());
+                Console.WriteLine(textData1.Foo(10, "ee", DateTime.Now));
+            }
+            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private static void ImplicitlyTypedVariable()
