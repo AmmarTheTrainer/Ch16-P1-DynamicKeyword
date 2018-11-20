@@ -21,20 +21,50 @@ namespace Ch16_P1_DynamicKeyword
             //UseObjectVarible();
             //PrintThreeStrings();
             //ChangeDynamicDataType();
-            InvokeMembersOnDynamicData();
+            //InvokeMembersOnDynamicData();
 
+            //UsingDynamicClass();
+
+            #region Limitation of a dynamic keyword
+
+            //dynamic a = GetDynamicObject();
+
+            //a.Method(arg => Console.WriteLine(arg));
+
+            //dynamic a = GetDynamicObject();
+
+            //var result = from d in a
+            //             select a;
+
+            #endregion
 
             Console.ReadLine();
         }
 
+        private static dynamic GetDynamicObject()
+        {
+            dynamic d = 1;
+            return d;
+        }
+
+        private static void UsingDynamicClass()
+        {
+            VeryDynamicClass dynamicClass = new VeryDynamicClass();
+
+            dynamic number = 1.3;
+
+            dynamicClass.DynamicMethod(number);
+
+        }
+
         private static void InvokeMembersOnDynamicData()
         {
-            dynamic textData1 = "Hello";
-            Console.WriteLine(textData1.ToUpper());
-            // You would expect compiler errors here!
-            // But they compile just fine.
-            Console.WriteLine(textData1.toupper());
-            Console.WriteLine(textData1.Foo(10, "ee", DateTime.Now));
+            //dynamic textData1 = "Hello";
+            //Console.WriteLine(textData1.ToUpper());
+            //// You would expect compiler errors here!
+            //// But they compile just fine.
+            //Console.WriteLine(textData1.toupper());
+            //Console.WriteLine(textData1.Foo(10, "ee", DateTime.Now));
 
             dynamic textData1 = "Hello";
             try
